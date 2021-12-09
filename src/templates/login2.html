@@ -1,0 +1,45 @@
+<html>
+
+<head>
+  <title>Log Form</title>
+  <link rel="stylesheet" href='static/css/login.css' />
+</head>
+
+<body>
+
+
+
+  <div class="container">
+    <div class="info">
+      <h1>School Portal</h1><span>Made <i class="fa fa-heart"></i>
+        by Quevy Valentin</span>
+    </div>
+  </div>
+
+  <div class="form">
+    <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg" /></div>
+
+    <form class="register-form">
+      <input type="text" placeholder="name" />
+      <input type="password" placeholder="password" />
+      <input type="text" placeholder="email address" />
+      <button>create</button>
+      <p class="message">Already registered?<a href="#">Sign In</a></p>
+    </form>
+
+    <form class="login-form" action="#" method="post">
+      <input type="text" name="email" placeholder="email" />
+      <input type="password" name="password" placeholder="password" />
+      <button type="submit">login</button>
+      <p class="message">Not registered?<a href="#">Create an account</a></p>
+    </form>
+    <script type="text/javascript">
+      $(".message a").click(function () {
+        $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+      });
+    </script>
+  </div>
+</body>
+
+
+</html>

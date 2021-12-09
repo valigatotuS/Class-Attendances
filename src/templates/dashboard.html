@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <hr>
+    <p>Welcome to your dashboard {{user['info']['fname'] + " " + user['info']['lname']}}</p>
+    
+    
+    {% if user['courses'] %}
+    <div class="classes">
+        <h2>Courses</h2>
+        <ul>
+            {% for course in user['courses'] %}
+            <li>{{course}}</li>
+            {% if course['role'] == 'admin' %}
+            <p>ADMIN</p>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    
+    {% if user['classes'] %}
+    <div class="classes">
+        <h2>Classes</h2>
+        <ul>
+            {% for class in user['classes'] %}
+            <li>{{class}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    
+    
+</body>
+</html>
