@@ -1,8 +1,8 @@
-Database Management: Project
+# Database Management: Project
 Author: Valentin Quevy
 Created: 09/12/2021
 
-Summary:
+## Summary:
 The purpose of this project is to learn developping simple 
 database driven web-sites using python [flask], html & css
 
@@ -13,15 +13,15 @@ database driven web-sites using python [flask], html & css
       	- my_queries.py  -> queries module
       	- main.py        -> functional code
       	- test.py        -> test code
+		- templates/:
+      		- index.html     -> home-page
+      		- about.html     -> about-page
+			- login.html     -> login-page 
 - files/:
-	-ER_diagram.png -> Entity Relational Diagram of database
-      	-db.db          -> sqlite3 database file
-      	-init_db.txt    -> queries for creating the tables of 'db.db'
-      	-rows/          -> folder containing csv-files with the table-rows 
-    	-templates/:
-      		-index.html     -> home-page
-      		-about.html     -> about-page
-		-login.html     -> login-page 
--venv/            -> virtual environment setup for the project 
+	- ER_diagram.png -> Entity Relational Diagram of database
+    - init_db.txt    -> queries for creating the tables of 'db.db'
+    - rows/          -> folder containing csv-files with the table-rows 
+    	
+- venv/            -> virtual environment setup for the project 
     
 
