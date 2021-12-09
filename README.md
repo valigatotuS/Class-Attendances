@@ -24,4 +24,6 @@ database driven web-sites using python [flask], html & css
     	
 - venv/            -> virtual environment setup for the project 
     
+## ER Diagram
 
+![ER_pic](files/ER_diagram.png)
