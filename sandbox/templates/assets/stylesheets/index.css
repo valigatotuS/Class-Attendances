@@ -1,23 +1,34 @@
 /*my css*/
 /*Variabels*/
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 :root {
   --theme-color1: rgb(255, 255, 255);
   --theme-color2: rgb(0, 0, 0);
-  --nav-height:70px;
+  --nav-height: 70px;
 }
 
 .navigation {
   height: var(--nav-height);
   background: var(--theme-color2);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .logo {
-  width: calc(var(--nav-height)*2.6);
+  width: calc(var(--nav-height) * 2.825);
   position: absolute;
-  padding-left: 10px;
+  padding-left: 20px;
   float: left;
   line-height: 90px;
+}
+
+.logo image {
+  width: 200px; /* width of container */
+  height: 200px; /* height of container */
+  object-fit: cover;
+  object-position: 20% 10%; /* try 20px 10px */
 }
 
 .top-nav {
@@ -29,33 +40,32 @@
   float: right;
 }
 
-.top-nav nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .top-nav nav ul li {
-    float: left;
-    position: relative;
+  float: left;
+  position: relative;
 }
 
 .top-nav nav ul li a {
-    display: block;
-    line-height: var(--nav-height);
-    padding: 0 20px;
-    color: var(--theme-color1);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: calc(var(--nav-height)/4);
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  display: block;
+  line-height: var(--nav-height);
+  padding: 0 20px;
+  color: var(--theme-color1);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: calc(var(--nav-height) / 4);
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 
-.top-nav  nav ul li a:hover {
-    background-color: var(--theme-color1);
-    color: var(--theme-color2);
+.top-nav nav ul li a:hover {
+  background-color: var(--theme-color1);
+  color: var(--theme-color2);
+  border: 1px solid #949599;
+  border-radius: 4px;
 }
 
-.top-nav .nav-list {
-    padding-right: 100px;
+.log {
+  float: inline-end;
+  margin-left: 150px;
+  margin-right: 25px;
 }
