@@ -1,20 +1,61 @@
 /*my css*/
+/*Variabels*/
 
-
-.H1 {
-    color: royalblue;
-    font-size: 40px;
+:root {
+  --theme-color1: rgb(255, 255, 255);
+  --theme-color2: rgb(0, 0, 0);
+  --nav-height:70px;
 }
 
-.H2 {
-    color:indigo;
-    font-size: 32px;
+.navigation {
+  height: var(--nav-height);
+  background: var(--theme-color2);
 }
 
-#shayhowe {
-    color:magenta;
+.logo {
+  width: calc(var(--nav-height)*2.6);
+  position: absolute;
+  padding-left: 10px;
+  float: left;
+  line-height: 90px;
 }
 
-.contact {
-    color:darkgoldenrod;
+.top-nav {
+  max-width: 1900px;
+  margin: 0 auto;
+}
+
+.top-nav nav {
+  float: right;
+}
+
+.top-nav nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav nav ul li {
+    float: left;
+    position: relative;
+}
+
+.top-nav nav ul li a {
+    display: block;
+    line-height: var(--nav-height);
+    padding: 0 20px;
+    color: var(--theme-color1);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: calc(var(--nav-height)/4);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.top-nav  nav ul li a:hover {
+    background-color: var(--theme-color1);
+    color: var(--theme-color2);
+}
+
+.top-nav .nav-list {
+    padding-right: 100px;
 }
