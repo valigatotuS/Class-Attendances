@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/stylesheets/reset.css" />
     <link rel="stylesheet" href="assets/stylesheets/index.css" />
-    <link rel="stylesheet" href="assets/stylesheets/login.css">
+    <link rel="stylesheet" href="assets/stylesheets/login.css" />
     <title>Dashboard</title>
   </head>
   <body>
@@ -22,32 +22,47 @@
         </div>
         <nav>
           <ul class="nav-list">
-            <li><a href="#">classes</a></li>
-            <li><a href="#">courses</a></li>
-            <li><a href="#">user</a></li>
-            <li class="log"><a href="#">log</a></li>
+            <span class="user-nav">
+              <li><a href="classes.html">classes</a></li>
+              <li><a href="#">courses</a></li>
+              <li><a href="#">user</a></li>
+            </span>
+            <li class="log"><a href="login.html">log</a></li>
           </ul>
         </nav>
       </div>
     </section>
     <br />
+    <script>
+      $(".message a").click(function () {
+        $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+      });
+    </script>
+
     <div class="login-page">
       <div class="form">
+        <label class="switch-form" for="toggle">*</label>
+        <input type="checkbox" id="toggle" class="visually-hidden" />
+        <div class="switch-label"></div>
+        <label class="login_p">Log in</label>
+        <label class="create_p">Create account</label>
         <form class="register-form">
-          <input type="text" placeholder="name"/>
-          <input type="password" placeholder="password"/>
-          <input type="text" placeholder="email address"/>
+          <input type="text" placeholder="name" />
+          <input type="password" placeholder="password" />
+          <input type="text" placeholder="email address" />
           <button>create</button>
-          <p class="message">Already registered? <a href="#">Sign In</a></p>
+          <!-- <p class="message">Already registered? <a href="#">Sign In</a></p> -->
         </form>
+                
         <form class="login-form">
-          <input type="text" placeholder="username"/>
-          <input type="password" placeholder="password"/>
-          <button>login</button>
-          <p class="message">Not registered? <a href="#">Create an account</a></p>
+          <input type="text" placeholder="username" />
+          <input type="password" placeholder="password" />
+          <button class="log-btn">login</button>
+          <!-- <p class="message">
+            Not registered? <a href="#">Create an account</a>
+          </p> -->
         </form>
       </div>
     </div>
-
   </body>
 </html>

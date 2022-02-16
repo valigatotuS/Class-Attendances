@@ -59,6 +59,9 @@
 .form .register-form {
   display: none;
 }
+.form .login-form {
+  display: block;
+}
 .container {
   position: relative;
   z-index: 1;
@@ -101,3 +104,41 @@ body {
     border-radius: 10px;
     font-weight: bold;
 }
+
+.user-nav {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+#toggle:checked ~ .register-form {
+  display: block;
+}
+#toggle:checked ~ .login-form {
+  display: none;
+}
+.switch-label {
+  content: "Sign in";
+}
+#toggle:checked ~ .switch-label {
+  content: "Create account";
+}
+
+label {
+  padding: 0.5rem 1rem;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.form {
+  float: top;
+}
+
+.switch-form {
+  float: right;
+  font-size: 12px;
+}
+

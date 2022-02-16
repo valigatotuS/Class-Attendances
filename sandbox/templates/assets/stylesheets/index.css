@@ -55,13 +55,15 @@
   font-size: calc(var(--nav-height) / 4);
   font-family: "Roboto", sans-serif;
   font-weight: bold;
+  border: 1px solid transparent;
 }
 
 .top-nav nav ul li a:hover {
   background-color: var(--theme-color1);
   color: var(--theme-color2);
-  border: 1px solid #949599;
+  border: 1px solid #5f688b;
   border-radius: 4px;
+  scale: 1.1;
 }
 
 .log {
@@ -69,3 +71,6 @@
   margin-left: 150px;
   margin-right: 25px;
 }
+
+
+
