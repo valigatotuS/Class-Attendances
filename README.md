@@ -19,5 +19,3 @@ database driven web-sites using python [flask], html & css
 2. . .venv/bin/activate
 3. export FLASK_APP=run.py
 4. flask run
-
-alias rm_pycache="find . | grep -E '(__pycache__)' | xargs rm -rf"
