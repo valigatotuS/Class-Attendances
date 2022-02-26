@@ -11,7 +11,7 @@ database driven web-sites using python [flask], html & css
     
 ## ER Diagram
 
-![ER_pic](database/ER_diagram.png)
+![ER_pic](app/database/ER_diagram.png)
 
 ## Deploy
 
