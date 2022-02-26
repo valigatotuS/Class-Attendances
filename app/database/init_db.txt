@@ -1,0 +1,45 @@
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Attendance;
+DROP TABLE IF EXISTS Course;
+DROP TABLE IF EXISTS UCourse;
+DROP TABLE IF EXISTS Class;
+
+CREATE TABLE `User` (
+  `UserId` int,
+  `fname` varchar(20),
+  `lname` varchar(20),
+  `email` varchar(40),
+  `password_hash` varchar(40),
+  PRIMARY KEY (`UserId`) 
+);
+
+CREATE TABLE `Attendance` (
+  `ClassId` int,
+  `UserId` int,
+  PRIMARY KEY (`ClassId`, `UserId`) 
+);
+
+CREATE TABLE `Course` (
+  `CourseId` int,
+  `name` varchar(20),
+  `semester` varchar(20),
+  PRIMARY KEY (`CourseId`) 
+);
+
+CREATE TABLE `UCourse` (
+  `CourseId` int,
+  `UserId` int,
+  `role` varchar(20),
+  PRIMARY KEY (`CourseId`, `UserId`) 
+);
+
+CREATE TABLE `Class` (
+  `ClassId` int,
+  `CourseId` int,
+  `date` varchar(20),
+  `time` varchar(20),
+  `duration` int,
+  `location` varchar(30),
+  `info` varchar(40),
+  PRIMARY KEY (`ClassId`) 
+);

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block css %}<link rel="stylesheet"
+      href="{{ url_for('login.static', filename='css/login.css')}}"/>
+{% endblock %}
+{% block content %}
+    <br />
+    <div class="login-page">
+        <div class="form">
+            <h1>Sign-in</h1>
+            <form class="login-form" method="POST" action="" role="form">
+                {{ form.hidden_tag() }}
+                {{ form.email(size=20, class="sign-field", placeholder="email") }}
+                {{ form.password(size=20, class="sign-field", placeholder="password") }}
+                {{ form.submit(class="sign-btn", method="POST") }}
+            </form>
+            <p class="message">
+                Not registered? <a href="sign-up">Create an account</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
