@@ -1,3 +1,6 @@
+from app import login
+from app.database.models import User
+
 def post_user(db_, values:list): 
     id_ = db_.Execute("SELECT COUNT(*) FROM User") 
     id = id_[0][0]+1
@@ -12,3 +15,7 @@ def get_user_info_bymail(db_, email:str):
         WHERE u.email='{email}';""", as_json=True)
     if len(res)<1: res = [None] 
     return res[0]
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))

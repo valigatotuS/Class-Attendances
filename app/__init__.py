@@ -1,5 +1,5 @@
 from flask import Flask
-#from flask_login import LoginManager
+from flask_login import LoginManager
 from app.database.database import create_db
 from flask_sqlalchemy import SQLAlchemy
 from app.database.models import Course
@@ -8,18 +8,18 @@ from flask_migrate import Migrate
 
 db = create_db(paths={"database":"app/database/db.sqlite", "init": "app/database/init_db.txt", "tables":  "app/database/rows/"}, init=True)
 db2 = SQLAlchemy()
-#login = LoginManager()
+login = LoginManager()
 
 def create_app(CONFIG):
    app = Flask(__name__)    
    app.config.from_object(CONFIG)
    migrate = Migrate(app, db)
-   
 
    with app.app_context():
+      login.init_app(app)
       db2.init_app(app)
       db2.create_all()
-      init_tables()
+      #init_tables()
       
    #login.init_app(app)
 
@@ -28,6 +28,12 @@ def create_app(CONFIG):
 
    from app.login import login_bp
    app.register_blueprint(login_bp)
+
+   from app.classes import classes_bp
+   app.register_blueprint(classes_bp)
+
+   from app.courses import courses_bp
+   app.register_blueprint(courses_bp) 
 
    return app
 

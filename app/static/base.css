@@ -6,6 +6,10 @@
   --nav-height: 70px;
 }
 
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 .navigation {
   height: var(--nav-height);
   background: var(--theme-color2);
@@ -16,22 +20,10 @@
 
 .logo {
   width: calc(var(--nav-height) * 2.825);
-  position: absolute;
+  position: relative;
   padding-left: 20px;
   float: left;
   line-height: 90px;
-}
-
-.logo image {
-  width: 200px; /* width of container */
-  height: 200px; /* height of container */
-  object-fit: cover;
-  object-position: 20% 10%; /* try 20px 10px */
-}
-
-.top-nav {
-  max-width: 1900px;
-  margin: 0 auto;
 }
 
 .top-nav nav {
