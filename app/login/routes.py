@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, current_app
+from flask import Blueprint, render_template, request, redirect, current_app, url_for, session
 from app.login import login_bp, queries
 from app.login.forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,6 +11,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 def sign_in():
     form = LoginForm(request.form)
 
+    if current_user.is_authenticated:
+            return(redirect('/logout'))
     #checking login-fields validity
     if request.method == 'POST' and form.validate():
         user = queries.get_user_info_bymail(db, form.email.data)
@@ -18,10 +20,10 @@ def sign_in():
         if user==None:
             return "this user do not exist"
         if check_password_hash(user["password_hash"], form.password.data):
-            #queries.load_user(user_.id)
-            login_user(user_)
+            login_user(user_) 
             if current_user.is_authenticated:
-                return "authentificated"
+                session['message'] = "authenticated"
+                return redirect(url_for("home.about"))
             return "succesful login " + user_.fname
         else:
             return str(db.Execute("SELECT * FROM User;"))
@@ -64,4 +66,20 @@ def sql_uc():
 @login_required
 def logout():
     logout_user()
-    return "logged out"
+    session.clear()
+    session['message']="logged out"
+    return redirect("/home")
+
+
+#------login handlers------#
+from app import login
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+@login.unauthorized_handler
+def unauthorized():
+    """Redirect unauthorized users to Login page."""
+    session['message'] = 'unauthorized acces, log-in first'
+    return redirect("/home")

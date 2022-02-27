@@ -19,3 +19,8 @@ def get_user_info_bymail(db_, email:str):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+@login.unauthorized_handler
+def unauthorized():
+    """Redirect unauthorized users to Login page."""
+    return redirect("/home")

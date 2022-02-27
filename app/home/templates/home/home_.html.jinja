@@ -1,9 +1,21 @@
 {% extends "base.html" %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('home.static', filename='css/home.css')}}"/>
+{% endblock %}
 {% block content %}
+    <br />
+
+    {% if session['message'] %}
+      <div class="message">
+        <p>{{session['message']}}</p>
+      </div>
+    {% endif %}
+    
     <br />
     <article>
       <h2>Home</h2>
       <br />
       <p>This is a website in developpment</p>
     </article>
+    
 {% endblock %}

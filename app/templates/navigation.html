@@ -15,7 +15,9 @@
           <li><a href="courses">courses</a></li>
           <li><a href="user">user</a></li>
         </span>
-        <li class="log"><a href="sign-in">log</a></li>
+        <li class="log">
+          <a href="sign-in">log {% if current_user.is_authenticated %} out{% endif %}</a>
+        </li>
       </ul>
     </nav>
   </div>
