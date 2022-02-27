@@ -19,7 +19,7 @@ def create_app(CONFIG):
       login.init_app(app)
       db2.init_app(app)
       db2.create_all()
-      #init_tables()
+      init_tables()
       
    #login.init_app(app)
 
@@ -69,6 +69,6 @@ def init_tables():
    # db2.session.add(cl)
    # db2.session.commit()
    
-   # u = db2.session.get(User, 3)
+   
    # db2.session.delete(u)
    # db2.session.commit()

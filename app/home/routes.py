@@ -4,5 +4,5 @@ from app.home import home_bp
 
 @home_bp.route('/')
 @home_bp.route('/home')
-def about():
+def home():
     return render_template('home/home_.html.jinja')

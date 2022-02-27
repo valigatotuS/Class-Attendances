@@ -8,4 +8,10 @@
     display: flex;
     justify-content: center;
     margin-left: 50px;
+    animation: cssAnim 0s 4s forwards;
+    visibility: visible;
+}
+
+@keyframes cssAnim {
+    to {visibility: hidden;}    
 }
