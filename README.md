@@ -7,9 +7,24 @@ The purpose of this project is to learn developping simple
 database driven web-sites using python [flask], html & css
 
 ## Folder Structure
-...
+    .
+    ├── app
+    │   ├── classes
+    │   ├── courses
+    │   ├── database
+    │   ├── home
+    │   ├── __init__.py
+    │   ├── login
+    │   ├── static
+    │   └── templates
+    ├── config.py
+    ├── Makefile
+    ├── notebook.ipynb
+    ├── README.md
+    └── run.py
+
     
-## ER Diagram
+## Database-design
 
 ![ER_pic](app/database/ER_diagram.png)
 
