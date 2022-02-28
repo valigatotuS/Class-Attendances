@@ -1,11 +1,12 @@
 import imp
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
 from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'User'   
+    __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(64), index=True)
     lname = db.Column(db.String(64), index=True)
@@ -19,7 +20,7 @@ class UCourse(db.Model):
     __tablename__ = 'UCourse'   
     course_id = db.Column(db.Integer, db.ForeignKey("User.id"), primary_key=True)
     user_id = db.Column(db.Integer, primary_key=True)
-    role = db.Column(db.String(120), index=True, unique=True)
+    role = db.Column(db.String(120))
 
 class Attendance(db.Model):
     __tablename__ = 'Attendance'
@@ -28,6 +29,7 @@ class Attendance(db.Model):
 
 class Course(db.Model):
     __tablename__ = 'Course'
+    meta = MetaData()
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     semester = db.Column(db.Integer)

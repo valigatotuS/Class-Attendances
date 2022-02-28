@@ -1,27 +1,26 @@
 from flask import Flask
 from flask_login import LoginManager
-from app.database.database import create_db
 from flask_sqlalchemy import SQLAlchemy
-from app.database.models import Course
+from sqlalchemy import MetaData, Table, Column, Integer
 from flask_migrate import Migrate
-# from app.database.models import db as db2
+from app.database.database import create_db
+from app.database.models import User, Class, UCourse, Attendance, Course
 
 db = create_db(paths={"database":"app/database/db.sqlite", "init": "app/database/init_db.txt", "tables":  "app/database/rows/"}, init=True)
-db2 = SQLAlchemy()
+from app.database.models import db as db2
+#db2 = SQLAlchemy()
 login = LoginManager()
 
 def create_app(CONFIG):
    app = Flask(__name__)    
    app.config.from_object(CONFIG)
-   migrate = Migrate(app, db)
 
    with app.app_context():
       login.init_app(app)
       db2.init_app(app)
       db2.create_all()
-      init_tables()
-      
-   #login.init_app(app)
+      db2.session.commit()
+      test()
 
    from app.home import home_bp
    app.register_blueprint(home_bp)
@@ -38,9 +37,11 @@ def create_app(CONFIG):
    return app
 
 
-def init_tables():
+def test():
    from app.database.models import User, UCourse, Class
-
+   
+   # sql = 'DROP TABLE IF EXISTS UCourse;'
+   # result = db2.engine.execute(sql)
    # u = User(
       #       fname="valentin", 
       #       lname="quevy",
@@ -48,10 +49,12 @@ def init_tables():
       #       password_hash="vq")
       # db2.session.add(u)
       # db2.session.commit()
+   
+   # uc = UCourse(course_id=1, user_id=1, role='admin')
+   # db2.session.add(uc)
+   # db2.session.commit()
 
-      # uc = UCourse(course_id=1, user_id=1, role='admin')
-      # db2.session.add(uc)
-      # db2.session.commit()
+   
    
    # c = Course(name="Electronics", semester=1)
    # db2.session.add(c)

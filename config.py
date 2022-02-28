@@ -7,7 +7,8 @@ class Config:
         "database":"app/database/db.sqlite",
         "init": "app/database/init_db.txt",
         "tables":  "app/database/rows/"}
+    DB_RECORDS = "app/database/records_csv/"
     DATABASE = create_db(paths=DB_PATHS, init = True)
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath("./app/database/db2.sqlite")
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath("./app/database/db4.sqlite")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

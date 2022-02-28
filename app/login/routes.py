@@ -3,11 +3,11 @@ from flask import Blueprint, render_template, request, redirect, current_app, ur
 from app.login import login_bp, queries
 from app.login.forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db#, login 
-from app.database.models import User, UCourse
+from app import db
+from app.database.models import User, UCourse, Attendance, Class, Course
 from app.database.models import db as db2
 from flask_login import current_user, login_user, logout_user, login_required
-from sqlalchemy import insert
+from flask import current_app as app
 
 @login_bp.route('/sign-in', methods=['GET','POST'])
 def sign_in():
@@ -17,39 +17,37 @@ def sign_in():
             return(redirect('/logout'))
     #checking login-fields validity
     if request.method == 'POST' and form.validate():
-        user = queries.get_user_info_bymail(db, form.email.data)
-        user_ = User.query.filter_by(email=form.email.data).first()
-        if user_ == None:
-            session["message"] = "no user with this email exist"
-        elif check_password_hash(user["password_hash"], form.password.data):
-            login_user(user_) 
+        user = User.query.filter_by(email=form.email.data).first()
+        if user == None:
+            session['message'] = "no user with this email exist"
+        elif check_password_hash(user.password_hash, form.password.data):
+            login_user(user) 
             session['message'] = "authenticated"
         else:
-            session['message'] = "incorrect password, try again" #str(db.Execute("SELECT * FROM User;"))
+            session['message'] = "incorrect password, try again" 
         return redirect("/home")
-
     return render_template('login/sign-in.html.jinja', form=form)
 
 @login_bp.route('/sign-up', methods=['GET','POST'])
 def sign_up():
     form = RegisterForm(request.form)
-
     #adding account to the database 
     if request.method == 'POST' and form.validate():
-        fields = [[form.firstname.data, form.lastname.data, form.email.data, generate_password_hash(form.password.data)]]
-        queries.post_user(db, fields)
-        output = db.Execute("SELECT * FROM User;")
-        u = User(
-            fname=form.firstname.data, 
-            lname=form.lastname.data,
-            email=form.email.data, 
-            password_hash=form.password.data)
-        db2.session.add(u)
-        db2.session.commit()
-        return str(output)
-
+        fields = [form.firstname.data, form.lastname.data, form.email.data, generate_password_hash(form.password.data)]
+        queries.add_user(*fields, db=db2)
+        session["message"] = "user is added, try to login"
+        return redirect("/home")
     return render_template('login/sign-up.html.jinja', form=form)
 
+@login_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    session['message']="logged out"
+    return redirect("/home")
+
+#------test routes-----#
 
 @login_bp.route('/sql/u', methods=['GET'])
 def sql_u():
@@ -63,40 +61,24 @@ def sql_uc():
     uc = UCourse.query.filter_by(course_id=1).first() #db2.session.query(User).filter_by(firstname='kkk').first()
     return (" ".join([str(uc.course_id), str(uc.user_id), uc.role]))
 
-@login_bp.route('/sql/insert', methods=['GET'])
-def sql_insert():
-    rows = []
-    # with open("app/database/rows/User.csv", 'r') as file:
-    #     rows = [r.split(',') for r in [r for r in file.read().split('\n')]]
-    # rows = [{"id":'1', "fname":'Valentin', "lname":'Quevy', "email":'vq@gmail.com',"password_hash": 'sha256$LbUE7S3pkypJXIdB$0a8a677fe64c36299f6e6180b7a148a53094918262bb483e94d0db260592188e'}, 
-    # {"id":'2', "fname":'Kurt', "lname":'Somers', "email":'ks@gmail.com', "password_hash":'sha256$g2pWmahTU8evT8Pi$559dad3bca0b54d476a3df6bd7b97c0239f644ac8f585944ee00f2a480cc2c45'}]
+@login_bp.route('/sql/test', methods=['GET'])
+def sql_test():
     
-    # db2.session.execute(insert(User), rows)
-    # db2.session.commit()
+    # meta = MetaData()
+    # meta.create_all(db2.engine)
+    # queries.delete_records(db2, User)
+    # queries.fill_table(app.config["DB_RECORDS"]+User.__tablename__+".csv" , User, db2)
 
-    # output = db2.metadata.tables.keys()
-    # import pandas as pd 
-    # with open("app/database/rows/User2.csv", 'r') as file:
-    #     rows = [r.split(',') for r in [r for r in file.read().split('\n')]]
-    # for row in rows:
-    #     row[]
 
-    # u = User.query.filter_by(id=1).first()
+    # u = UCourse.query.filter_by(course_id=1).first()
     # db2.session.delete(u)
     # db2.session.commit()
     
-    return str(df)
-
-@login_bp.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    session.clear()
-    session['message']="logged out"
-    return redirect("/home")
+    return str("kkk") # app.config["DB_RECORDS"]
 
 
 #------login handlers------#
+
 from app import login
 
 @login.user_loader
