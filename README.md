@@ -1,5 +1,5 @@
 # Database Management: Project
-Author: Valentin Quevy
+Author: valigatotuS
 Created: 09/12/2021
 
 ## Summary:
@@ -39,7 +39,6 @@ The database will be stored in an sqlite-file.
 
 ## Deploy
 
-1. open terminal and enter following commands (bash)
-2. . .venv/bin/activate
-3. export FLASK_APP=run.py
-4. flask run
+1. open terminal
+2. install the needed requirements
+3.  $ make run
