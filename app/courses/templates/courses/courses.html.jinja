@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
+{% endblock %}
+{% block content %}
+    <br />
+    <h1>Courses</h1>
+
+    <div class="courses-list">
+      {% for course in courses %}
+      <br />
+      <p>
+        {{"id:%s, name:%s, semester:%s" % (course.id, course.name, course.semester)}}
+      </p>
+      {% endfor %}
+    </div>
+    
+{% endblock %}

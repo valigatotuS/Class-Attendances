@@ -1,6 +1,7 @@
 from operator import index
 from flask import Blueprint, render_template, request, redirect, current_app, url_for, session
-from app.login import login_bp, queries
+from app.login import login_bp
+from app.database import queries
 from app.login.forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
@@ -75,6 +76,15 @@ def sql_test():
     # db2.session.commit()
     
     return str("kkk") # app.config["DB_RECORDS"]
+
+@login_bp.route('/sql/courses', methods=['GET'])
+def sql_classes():
+    id = current_user.get_id()
+    ucs = UCourse.query.filter_by(user_id=id).all()
+    courses_id = [uc.course_id for uc in ucs]
+    courses = Course.query.filter(Course.id.in_(courses_id)).all()
+    names = [course.name for course in courses]
+    return str(names)
 
 
 #------login handlers------#
