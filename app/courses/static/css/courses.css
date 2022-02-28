@@ -1,3 +1,36 @@
 .courses-list, h1 {
     margin-left: 100px;
 }
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    font-family: "Roboto", sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+    background-color: var(--theme-color2);
+    color: var(--theme-color1);
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+td, th {
+    font-size: x-large;
+}
+
+button {
+    margin-top: 10px;
+    margin-left: 57.5%;
+}

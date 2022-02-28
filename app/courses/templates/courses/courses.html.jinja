@@ -4,15 +4,25 @@
 {% endblock %}
 {% block content %}
     <br />
-    <h1>Courses</h1>
 
-    <div class="courses-list">
-      {% for course in courses %}
-      <br />
-      <p>
-        {{"id:%s, name:%s, semester:%s" % (course.id, course.name, course.semester)}}
-      </p>
-      {% endfor %}
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>course</th>
+          <th>semester</th>
+        </tr>
+      </thead>
+        <tbody>
+          {% for course in courses %}
+          <tr>
+            <td>{{course.id}}</td>
+            <td>{{course.name}}</td>
+            <td>{{course.semester}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    {# <button type="button" class="btn-download">download csv</button> #}
     
 {% endblock %}
