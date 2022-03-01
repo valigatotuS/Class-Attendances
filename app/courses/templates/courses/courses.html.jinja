@@ -11,14 +11,25 @@
           <th>id</th>
           <th>course</th>
           <th>semester</th>
+          <th></th>
         </tr>
       </thead>
         <tbody>
+          <tr class="form-row">
+            <form class="course-form" method="POST" action="" role="form">
+              {{ form.hidden_tag() }}
+              <td>{{form.id(size=5)}}</td>
+              <td>{{form.course(size=20)}}</td>
+              <td>{{form.semester(size=20)}}</td>     
+              <td>{{form.submit(class="add-btn", method="POST") }}</td>       
+            </form>
+          </tr>
           {% for course in courses %}
           <tr>
             <td>{{course.id}}</td>
             <td>{{course.name}}</td>
             <td>{{course.semester}}</td>
+            <td></td>
           </tr>
           {% endfor %}
         </tbody>

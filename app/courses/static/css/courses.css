@@ -34,3 +34,12 @@ button {
     margin-top: 10px;
     margin-left: 57.5%;
 }
+
+input {
+    border-color: rgb(255, 255, 255);
+    background-color: antiquewhite;
+}
+
+.form-row {
+    border-bottom: 1pt dashed black;
+}
