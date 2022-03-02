@@ -14,6 +14,7 @@
           <th>time</th>
           <th>duration</th>
           <th>location</th>
+          <th></th>
         </tr>
       </thead>
         <tbody>
@@ -25,6 +26,11 @@
             <td>{{class.time}}</td>
             <td>{{class.duration}}'</td>
             <td>{{class.location}}</td> 
+            <td>
+              <a href={{"classes/attempt/" ~ class.id}}>
+                <button type="button" class="btn-attempt" href="pp">attempt</button>
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>

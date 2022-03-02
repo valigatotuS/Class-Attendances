@@ -6,5 +6,11 @@ from app.database import queries
 @classes_bp.route('/classes', methods=['GET','POST'])
 @login_required
 def classes():
-    classes_ = queries.get_user_classes()
-    return render_template("classes/classes.html.jinja", classes=classes_)
+    classes = queries.get_user_classes()
+    return render_template("classes/classes.html.jinja", classes=classes)
+
+@classes_bp.route('/classes/attempt/<class_id>')
+@login_required
+def post_attendance(class_id):
+    queries.add_attendance(class_id)
+    return redirect("/classes")

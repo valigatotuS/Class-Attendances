@@ -38,7 +38,7 @@ def get_user_courses_v2():
 
 def get_user_classes():
     querie = f"""
-        SELECT date, name as course, info, time, duration, location
+        SELECT date, name as course, info, time, duration, location, cl.id
         FROM User u
         INNER JOIN UCourse uc ON u.id=uc.user_id
         INNER JOIN Course c ON uc.course_id=c.id
@@ -51,6 +51,11 @@ def add_course(name, semester, db):
     c = Course(name=name, semester=semester)
     db.session.add(c)
     db.session.commit()
+
+def add_attendance(class_id):
+    a = Attendance(class_id=class_id ,user_id=current_user.get_id())
+    db2.session.add(a)
+    db2.session.commit()
 
 def add_user(fname,lname,email,password_hash,db):
     u = User(
