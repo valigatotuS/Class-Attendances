@@ -25,12 +25,17 @@
             <td>{{class.info}}</td>
             <td>{{class.time}}</td>
             <td>{{class.duration}}'</td>
-            <td>{{class.location}}</td> 
+            <td>{{class.location}}</td>
+            {% if session['role']=='student'%}
             <td>
-              <a href={{"classes/attempt/" ~ class.id}}>
-                <button type="button" class="btn-attempt" href="pp">attempt</button>
+              <a href={{"classes/attend/" ~ class.id}}>
+                <button type="button" class="btn-attend" href="pp">attend</button>
               </a>
             </td>
+            {% endif %}
+            {% if session['role']=='admin'%}
+            <td></td>
+            {% endif %}
           </tr>
           {% endfor %}
         </tbody>

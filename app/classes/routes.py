@@ -9,7 +9,7 @@ def classes():
     classes = queries.get_user_classes()
     return render_template("classes/classes.html.jinja", classes=classes)
 
-@classes_bp.route('/classes/attempt/<class_id>')
+@classes_bp.route('/classes/attend/<class_id>')
 @login_required
 def post_attendance(class_id):
     queries.add_attendance(class_id)

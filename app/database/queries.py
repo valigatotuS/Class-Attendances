@@ -4,12 +4,7 @@ from flask_login import current_user
 from app.database.models import User, Class, UCourse, Attendance, Course
 from app import db2
 
-def post_user(db_, values:list): 
-    id_ = db_.Execute("SELECT COUNT(*) FROM User") 
-    id = id_[0][0]+1
-    q = f"""INSERT INTO User 
-        VALUES({id},?,?,?,?);"""
-    db_.ExecuteMany(q, values)
+#----select queries----#
 
 def get_user_info_bymail(db_, email:str):
     res = db_.Execute(f"""
@@ -47,10 +42,22 @@ def get_user_classes():
     classes = db2.session.execute(querie)
     return classes
 
-def add_course(name, semester, db):
+def get_user_roles(user_id:int):
+    querie = f"""
+        SELECT role 
+        FROM User u
+        INNER JOIN UCourse uc ON u.id=uc.user_id
+        WHERE u.id={user_id}"""
+    uc = db2.session.execute(querie)
+    roles = [userc.role for userc in uc]
+    return roles 
+
+#----post queries----#
+
+def add_course(name, semester):
     c = Course(name=name, semester=semester)
-    db.session.add(c)
-    db.session.commit()
+    db2.session.add(c)
+    db2.session.commit()
 
 def add_attendance(class_id):
     a = Attendance(class_id=class_id ,user_id=current_user.get_id())
@@ -66,9 +73,18 @@ def add_user(fname,lname,email,password_hash,db):
     db.session.add(u)
     db.session.commit()
 
+#----delete queries---#
+
 def delete_records(db, Model):
     db.session.query(Model).delete()
     db.session.commit()
+
+def delete_course(course_id):
+    course = Course.query.get(course_id)
+    db2.session.delete(course)
+    db2.session.commit()
+
+#----sub functions----#
 
 def fill_table(path:str, Model, db):
     records = csv2dict(path)

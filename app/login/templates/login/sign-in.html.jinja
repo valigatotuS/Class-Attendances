@@ -11,6 +11,7 @@
                 {{ form.hidden_tag() }}
                 {{ form.email(size=20, class="sign-field", placeholder="email") }}
                 {{ form.password(size=20, class="sign-field", placeholder="password") }}
+                {{ form.role(class="sign-field", placeholder="role")}}
                 {{ form.submit(class="sign-btn", method="POST") }}
             </form>
             <p class="message">

@@ -12,18 +12,19 @@ def courses():
     courses = queries.get_user_courses() #queries.get_user_courses_v2()
     form = CourseForm(request.form)
     if request.method == 'POST' and form.validate():
-        fields = [form.course.data, int(form.semester.data)]
-        queries.add_course(*fields, db=db2)
+        queries.add_course(form.course.data, int(form.semester.data))
     return render_template("courses/courses.html.jinja", courses=courses, form=form)
 
 @courses_bp.route('/coursesQ', methods=['GET','POST'])
+@login_required
 def coursesq():
     courses = queries.get_user_courses_v2().all()
     out = [[course.name, course.semester, course.role] for course in courses]
     return render_template("courses/courses.html.jinja", courses=courses)
 
-@courses_bp.route('/courses/add', methods=['GET','POST'])
-def add_course():
-    # from app import db2
-    # queries.add_course("Statistiek", 2, db2)
+@courses_bp.route('/courses/delete/<course_id>', methods=['GET','POST'])
+@login_required
+def delete_course(course_id):
+    queries.delete_course(course_id)
     return redirect("/courses")
+

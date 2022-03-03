@@ -21,9 +21,11 @@ def sign_in():
         user = User.query.filter_by(email=form.email.data).first()
         if user == None:
             session['message'] = "no user with this email exist"
-        elif check_password_hash(user.password_hash, form.password.data):
+        elif   (check_password_hash(user.password_hash, form.password.data) and
+                form.role.data in queries.get_user_roles(user.id)):  
             login_user(user) 
-            session['message'] = "authenticated"
+            session['role'] = form.role.data
+            session['message'] = "authenticated as " + form.role.data
         else:
             session['message'] = "incorrect password, try again" 
         return redirect("/home")
