@@ -33,12 +33,23 @@ def get_user_courses_v2():
 
 def get_user_classes():
     querie = f"""
-        SELECT date, name as course, info, time, duration, location, cl.id
+        SELECT date, name as course, info, time, duration, location, cl.id, c.id as course_id
         FROM User u
         INNER JOIN UCourse uc ON u.id=uc.user_id
         INNER JOIN Course c ON uc.course_id=c.id
         INNER JOIN Class cl ON c.id=cl.course_id
         WHERE u.id={current_user.get_id()};"""
+    classes = db2.session.execute(querie)
+    return classes
+
+def get_course_classes(id):
+    querie = f"""
+        SELECT date, name as course, info, time, duration, location, cl.id
+        FROM User u
+        INNER JOIN UCourse uc ON u.id=uc.user_id
+        INNER JOIN Course c ON uc.course_id=c.id
+        INNER JOIN Class cl ON c.id=cl.course_id
+        WHERE c.id={id} AND u.id={current_user.get_id()};"""
     classes = db2.session.execute(querie)
     return classes
 

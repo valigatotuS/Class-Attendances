@@ -30,11 +30,6 @@ td, th {
     font-size: x-large;
 }
 
-button {
-    margin-top: 10px;
-    margin-left: 57.5%;
-}
-
 input {
     border-color: rgb(255, 255, 255);
     background-color: antiquewhite;

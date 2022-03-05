@@ -1,22 +1,30 @@
 {% extends "base.html" %}
 {% block css %}
-  <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
+  <link rel="stylesheet" href="{{ url_for('classes.static', filename='css/classes.css')}}"/>
 {% endblock %}
 {% block content %}
     <br />
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>date</th>
-          <th>course</th>
-          <th>class</th>
-          <th>time</th>
-          <th>duration</th>
-          <th>location</th>
-          <th></th>
-        </tr>
-      </thead>
+    <div class="container-1">
+      <table class="table">
+        <caption>Classes</caption>
+        <form class="login-form" method="POST" action="" role="form">
+          <label>Filter: </label>
+          {{form.hidden_tag()}}
+          {{form.course.label}}{{form.course}}
+          {{form.submit(method="POST")}}
+        </form>
+        <br />
+        <thead>
+          <tr>
+            <th>date</th>
+            <th>course</th>
+            <th>class</th>
+            <th>time</th>
+            <th>duration</th>
+            <th>location</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           {% for class in classes %}
           <tr>
@@ -39,6 +47,8 @@
           </tr>
           {% endfor %}
         </tbody>
-    </table>
-    {# <button type="button" class="btn-download">download csv</button> #}
+      </table>
+      <button type="button" class="btn-download">export csv</button>
+    </div>
+    
 {% endblock %}
