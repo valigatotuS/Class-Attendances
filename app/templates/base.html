@@ -12,6 +12,12 @@
   </head>
   <body>
     {% include 'navigation.html' %}
+    
+    {% if session['message'] %}
+      <div class="message">
+        <p>{{session['message']}}</p>
+      </div>
+    {% endif %}
 
     {% block content %}{% endblock %}
 

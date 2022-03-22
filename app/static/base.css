@@ -62,3 +62,21 @@
   margin-left: 150px;
   margin-right: 25px;
 }
+
+.message {
+  text-align: center;
+  border: 1px solid #e28383;
+  background-color: rgb(230, 230, 230);
+  border-radius: 20px;
+  width: 300px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  margin-left: 50px;
+  animation: cssAnim 0s 4s forwards;
+  visibility: visible;
+}
+
+@keyframes cssAnim {
+  to {visibility: hidden;}    
+}
