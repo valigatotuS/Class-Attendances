@@ -1,10 +1,9 @@
 from operator import index
 from flask import Blueprint, render_template, request, redirect, current_app, url_for, session
-from app.login import login_bp
+from app.blueprints.login import login_bp
 from app.database import queries
-from app.login.forms import LoginForm, RegisterForm
+from app.blueprints.login.forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
 from app.database.models import User, UCourse, Attendance, Class, Course
 from app.database.models import db as db2
 from flask_login import current_user, login_user, logout_user, login_required

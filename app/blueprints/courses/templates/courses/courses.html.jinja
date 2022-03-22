@@ -32,7 +32,12 @@
             <td>{{course.name}}</td>
             <td>{{course.semester}}</td>
             {% if session['role']=='admin'%}
-            <td><a href={{"/courses/delete/" ~ course.id}}> <button type="button" class="btn-delete-course">delete</button></td>
+            <td>
+              <form action={{"/courses/delete/" ~ course.id}} method ="POST"> 
+                  <input method="POST" type="submit" value="delete">
+              </form>
+              {# <a href={{"/courses/delete/" ~ course.id}}> <button type="button" class="btn-delete-course">delete</button> #}
+            </td>
             {% endif %}
             {% if session['role'] in ['student', 'teacher']%}
             <td></td>

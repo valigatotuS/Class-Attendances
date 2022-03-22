@@ -28,9 +28,9 @@
             <td>{{class.location}}</td>
             {% if session['role']=='student'%}
             <td>
-              <a href={{"classes/attend/" ~ class.id}}>
-                <button type="button" class="btn-attend" href="pp">attend</button>
-              </a>
+              <form action={{"classes/attend/" ~ class.id}} method ="POST"> 
+                <input method="POST" type="submit" value="attend">
+              </form>
             </td>
             {% endif %}
             {% if session['role']=='admin'%}

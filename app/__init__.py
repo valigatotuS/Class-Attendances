@@ -2,13 +2,11 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData, Table, Column, Integer
-from flask_migrate import Migrate
 from app.database.database import create_db
 from app.database.models import User, Class, UCourse, Attendance, Course
 
-db = create_db(paths={"database":"app/database/db.sqlite", "init": "app/database/init_db.txt", "tables":  "app/database/rows/"}, init=True)
+
 from app.database.models import db as db2
-#db2 = SQLAlchemy()
 login = LoginManager()
 
 def create_app(CONFIG):
@@ -20,22 +18,24 @@ def create_app(CONFIG):
       db2.init_app(app)
       db2.create_all()
       db2.session.commit()
-      test()
+      #test()
 
-   from app.home import home_bp
+   from app.blueprints.home import home_bp
    app.register_blueprint(home_bp)
-
-   from app.login import login_bp
+   from app.blueprints.login import login_bp
    app.register_blueprint(login_bp)
-
-   from app.classes import classes_bp
+   from app.blueprints.classes import classes_bp
    app.register_blueprint(classes_bp)
-
-   from app.courses import courses_bp
+   from app.blueprints.courses import courses_bp
    app.register_blueprint(courses_bp) 
 
    return app
 
+
+
+#--------------tests----------------#
+
+#db = create_db(paths={"database":"app/database/db.sqlite", "init": "app/database/init_db.txt", "tables":  "app/database/rows/"}, init=True)
 
 def test():
    from app.database.models import User, UCourse, Class

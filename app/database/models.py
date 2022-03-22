@@ -44,3 +44,6 @@ class Class(db.Model):
     duration = db.Column(db.Integer)
     location = db.Column(db.String(120))
     info = db.Column(db.String(120))
+
+    def to_dict(self):
+        return {'class':9}
