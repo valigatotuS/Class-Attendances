@@ -32,14 +32,11 @@ The database will be stored in an sqlite-file.
 ### Folder Structure
     .
     ├── app
-    │   ├── classes             => blueprint: classes       (sub-app)
-    │   ├── courses             => blueprint: courses       (sub-app)
+    │   ├── blueprints
     │   ├── database            => database & management    (db, queries, models:tables)
-    │   ├── home                => blueprint: home          (sub-app)
     │   ├── __init__.py         => app initialiser
-    │   ├── login               => blueprint: login         (sub-app)
     │   ├── static              => css & js assets
-    │   └── templates           => html templates
+    │   └── templates           => html templates            
     ├── config.py               => app configuration settings
     ├── Makefile                => executing terminal commands
     ├── notebook.ipynb          => python playground
