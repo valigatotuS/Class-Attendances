@@ -31,23 +31,23 @@ run:
 	$(shell . .venv/bin/activate && python3 run.py)
 
 
-# .PHONY: deploy
-# deploy:
-# 	$(shell . ./deploy.sh)
+.PHONY: deploy
+deploy:
+	$(shell . ./deploy.sh)
 
 
-# .PHONY: update
-# update:
-# 	poetry shell && poetry update
-# 	pip freeze > requirements.txt
-# 	exit
+.PHONY: update
+update:
+	poetry shell && poetry update
+	pip freeze > requirements.txt
+	exit
 
 
-# .PHONY: format
-# format: requirements
-# 	$(shell . .venv/bin/activate)
-# 	$(shell isort -rc ./)
-# 	$(shell black ./)
+.PHONY: format
+format: requirements
+	$(shell . .venv/bin/activate)
+	$(shell isort -rc ./)
+	$(shell black ./)
 
 
 .PHONY: clean
