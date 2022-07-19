@@ -1,0 +1,265 @@
+* {
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* side-bar and childs */
+
+#side-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 84px;
+    height: 100%;
+    color: white;
+    margin-right: 20px;
+    background-color: #FF6600;
+}
+
+@media (max-width: 800px) {                  
+    #side-bar {
+       display: none;
+    }
+}
+
+#home-corner{
+    width: 84px;
+    height: 85px;
+}
+
+#home-corner img{
+    height: 100%;
+}
+
+#nav-bar{
+    display: flex;
+    flex-direction: column;
+}
+
+#logout-btn{
+    position: absolute;
+    bottom: 0px;
+}
+
+#nav-bar button {
+    width: 100%;
+    height: 72.6px;
+}
+
+#nav-bar button:hover{
+    background-color: #d75600;
+}
+
+#nav-bar button svg {
+    width: 26px;
+    fill: white;
+    vertical-align: middle;
+    padding-bottom: 8px;
+}
+
+.menu-item-text{
+    text-align: center;
+}
+
+.menu-dash{
+    color: #003399;
+    background-color: white;
+}
+
+#nav-bar .menu-dash svg{
+    fill: #003399;
+}
+
+#nav-bar button:hover svg,
+#nav-bar button:hover{
+    fill: white;
+    color: white;
+}
+
+
+/* container */
+
+#container-dashboard{
+    margin-left: 84px;
+    padding: 0px 24px 0px 24px;
+}
+
+h1{
+    font-size: 1.8em;
+    font-weight: normal;
+    line-height: 2.5; 
+    text-align: left;
+    color: #2D3B45;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container-header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    box-sizing: border-box;
+    background-color: white;
+    opacity: 0.95;
+}
+
+.container-header, .container-day h2{
+    border-bottom: 1px solid #c7cdd1;
+}
+
+#container-dashboard h2 {
+    color: #394B58;
+    font-weight: 700;
+    font-size: 1rem;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.container-day{
+    margin-top: 36px;
+}
+
+.container-day p{
+    text-align: center;
+}
+
+.day-box{
+    /* border-top: 1.25px solid rgb(90, 146, 222); */
+    box-sizing: border-box;
+    display: flex;
+    margin: 26px 0px 0px 36px;
+}
+
+.day-box .banner{
+    border: 0.5px solid black;
+    border-radius: 5px 0px 0px 5px;
+    box-sizing: border-box;
+    width: 192px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.day-box .banner span{
+    background-color: white;
+    border-radius: 5px 0px 0px 0px;
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700px;
+    text-transform: uppercase;
+    color: inherit;
+}
+
+.day-box ol{
+    border-top: 0.5px solid rgb(90, 146, 222);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.day-box ol li div span{
+    display: block;
+}
+
+.day-box ol li .secondary{
+    color: #2D3B45;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.day-box ol li{
+    display: flex;
+    border-bottom: 0.0625rem solid #C7CDD1;
+    box-sizing: border-box; 
+    padding: 12px 8px;
+    height: 67px;
+    color: #003399;
+    line-height: 22px;
+}
+.courses .banner{
+    background-color: rgb(90, 146, 222);
+    border: 0.5px solid rgb(90, 146, 222);
+    color: rgb(90, 146, 222);
+}
+
+.dash-picto{
+    margin: auto 24px;
+    fill: rgb(90, 146, 222);
+    /* width: 100px; */
+}
+
+.attend-btn{
+    margin: auto 0  auto 24px;
+    align-self: flex-end;
+    border: 1px solid rgb(90, 146, 222);
+    color: rgb(90, 146, 222);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.attend-btn{
+    margin-left: auto;
+    margin-right: 24px;
+    transition: 0.2s;
+}
+
+.attend-btn:hover{
+    background-color: rgb(90, 146, 222);
+    color: white;
+}
+
+/* test flexbox */
+
+.flex-container {
+    height: 500px; width: 100%;
+    border: 1px solid red;  
+
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items:center;
+    /* justify-content: flex-end; */
+  }
+  
+  /* this selector selects all divs inside of .flex-container */
+  .flex-container div {
+    background: peachpuff;
+    border: 2px dotted brown;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+
+    /* flex: 1; */
+  }
+  .flex-container .one{
+    /* flex:1; */
+    /* flex-basis: 45%;
+    box-sizing: border-box; */
+    /* flex-grow: 1; */
+  }
+  .flex-container .two{
+    flex:1;
+    max-width: 150px;
+    /* flex-basis: 45%; */
+    /* box-sizing: border-box; */
+    /* flex-grow: 2; */
+    /* flex-shrink: 3; */
+    /* align-self: flex-start; */
+}
+.flex-container .three{
+    flex-basis: 40%;
+    /* width: 450px; */
+    margin-left: auto;
+
+}
+
+  @media(max-width:1100px){
+    .flex-container {
+        flex-direction: column;
+        /* align-items: center;
+        border: 1px solid red;
+        justify-content: space-between; */
+      }
+}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('classes.static', filename='css/classes.css')}}"/>
+{% endblock %}
+{% block content %}
+    <br />
+    <div class="container-1">
+      <table class="table">
+        <caption>Classes</caption>
+        <form class="login-form" method="POST" action="" role="form">
+          <label>Filter: </label>
+          {{form.hidden_tag()}}
+          {{form.course.label}}{{form.course}}
+          {{form.submit(method="POST")}}
+        </form>
+        <br />
+        <thead>
+          <tr>
+            <th>date</th>
+            <th>course</th>
+            <th>class</th>
+            <th>time</th>
+            <th>duration</th>
+            <th>location</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for class in classes %}
+          <tr>
+            <td>{{class.date}}</td>
+            <td>{{class.course}}</td>
+            <td>{{class.info}}</td>
+            <td>{{class.time}}</td>
+            <td>{{class.duration}}'</td>
+            <td>{{class.location}}</td>
+            {% if session['role']=='student'%}
+            <td>
+              <form action={{"classes/attend/" ~ class.id}} method ="POST"> 
+                <input method="POST" type="submit" value="attend">
+              </form>
+            </td>
+            {% endif %}
+            {% if session['role']=='admin'%}
+            <td></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button type="button" class="btn-download">export csv</button>
+    </div>
+    
+{% endblock %}

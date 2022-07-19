@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/reset.css" >
+    <link rel="stylesheet" href="login/static/css/login.css" >
+    <title>Sign in to your account</title>
+</head>
+<body>
+    <div class="background">
+        <div class="login box">
+            <!-- <form class="login-form" method="POST" action="" role="form">
+                <img id="login-logo" role="img" pngsrc="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ed9c9eb0dce17d752bedea6b5acda6d9.png" svgsrc="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg" data-bind="imgSrc, attr: { alt: str['MOBILE_STR_Footer_Microsoft'] }" src="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg" alt="Microsoft">
+                <div class="title">Sign in</div>
+                    <input class="email input" type="text" placeholder="Email">
+                    <input class="password input" type="password" placeholder="Password">
+                    <a id="login-link" href="sign-up">Create account</a>
+                    <input type="submit" value="Sign in" id="log-btn">
+            </form> -->
+            {% if get_flashed_messages() %}
+                <div class="alert">
+                    {{get_flashed_messages()[-1]}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+            {% endif %}
+            <form class="login-form" method="POST" action="" role="form">
+                <img id="login-logo" role="img" pngsrc="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ed9c9eb0dce17d752bedea6b5acda6d9.png" svgsrc="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg" data-bind="imgSrc, attr: { alt: str['MOBILE_STR_Footer_Microsoft'] }" src="https://aadcdn.msftauth.net/shared/1.0/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg" alt="Microsoft">
+                <div class="title">Sign in</div>
+                {{ form.hidden_tag() }}
+                {{ form.email(size=20, class="email input", placeholder="Email") }}
+                {{ form.password(size=20, class="password input", placeholder="Password") }}
+                {{ form.role(class="input", placeholder="Role")}}
+                <a id="login-link" href="sign-up">Create account</a>
+                {{ form.submit(id="log-btn", method="POST", value="Sign in") }}
+            </form>
+
+            <div class="footer">Welcome to the Valentin environment of the Vrije Universiteit Brussel. You can log on with your VUB email address. If you have an issue, please contact the ICT-Helpdesk by sending an email to nobody@email .</div>
+        </div>
+    </div>    
+</body>
+</html>

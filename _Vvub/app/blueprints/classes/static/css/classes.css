@@ -1,0 +1,57 @@
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    font-family: "Roboto", sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    height: 60%;
+}
+
+.table thead tr {
+    background-color: var(--theme-color2);
+    color: var(--theme-color1);
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+td, th {
+    font-size: x-large;
+}
+
+input {
+    border-color: rgb(255, 255, 255);
+    background-color: antiquewhite;
+}
+
+.form-row {
+    border-bottom: 1pt dashed black;
+}
+
+.table caption {
+    text-align: left;
+    font-style: italic;
+    font-size: 48px;
+    margin: 0% 0% 1% 5%;
+}
+
+.container-1 {
+    height: auto;
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    /* background-color: #f3f3f3; */
+}
+
+.btn-download {
+    margin: 0.5% 0% 0% 87.8%;
+    background-color: gray;
+}
