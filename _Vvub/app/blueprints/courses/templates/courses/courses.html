@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block head_local %}
+  <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
+  <style>
+    .courses-table{
+      margin-top: 40px;
+      width: 100%;
+      height: 42px;
+      /* border: 1px solid red; */
+    }
+
+    .courses-table tr{
+      border-bottom: 1px solid #c7cdd1;
+    }
+
+    .courses-table thead tr{
+      border-bottom: 1px solid #a5afb5;;
+    }
+
+    .courses-table th{
+      text-align: start;
+      font-size: 1rem;
+      padding: 14px 7px 7px 7px;
+      color: #2D3B45;
+      font-weight: bold;
+    }
+
+    .courses-table td{
+      padding: 14px 7px;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+
+    .courses-table a{
+      color: #003399;
+      text-decoration: none;
+    }
+
+    .courses-table a:hover{
+      text-decoration: underline;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+<div id="container-dashboard">
+  <div class="container-header">
+    <h1>Alle cursussen</h1>
+    <div class="courses-table-container">
+      <table class="courses-table">
+        <thead>
+          <tr>
+            <th>     </th>
+            <th>Cursus</th>
+            <th>Periode</th>
+            <th>Semester</th>
+            <th>Ingeschreven als</th>
+            <th>Gepubliceerd</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for course in session['user_courses'].values() %}
+          <tr>
+            <td></td>
+            <td><a href="">{{course['name']}}</a></td>
+            <td>2122</td>
+            <td>{{course['semester']}}</td>
+            <td>Cursist</td>
+            <td>Ja</td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,3 +1,4 @@
+from flask import session
 from app.database.models import User
 from sqlalchemy import insert
 from flask_login import current_user
@@ -14,6 +15,14 @@ def get_user_info_bymail(db_, email:str):
     if len(res)<1: res = [None] 
     return res[0]
 
+def get_user_info():
+    querie = f"""
+        SELECT id, fname, lname, email
+        FROM User u
+        WHERE u.id={current_user.get_id()};"""
+    user_info = db2.session.execute(querie)
+    return dict(user_info.fetchone())
+
 def get_user_courses():
     id = current_user.get_id()
     ucs = UCourse.query.filter_by(user_id=id).all()
@@ -29,7 +38,8 @@ def get_user_courses_v2():
         INNER JOIN Course c ON uc.course_id=c.id
         WHERE u.id={current_user.get_id()};"""
     courses = db2.session.execute(querie)
-    return courses
+    courses_dict = {course.id : dict(course) for  course in courses.fetchall()}
+    return courses_dict
 
 def get_user_classes():
     querie = f"""
@@ -108,3 +118,8 @@ def csv2dict(path:str):
         lines = [r.split(',') for r in [r for r in file.read().split('\n')]]
     (keys, records) = (lines[0], lines[1:-1])
     return [dict(zip(keys, record)) for record in records]
+
+import json 
+def load_user_data():
+    session['user_info'] = get_user_info()
+    session['user_courses'] = get_user_courses_v2()

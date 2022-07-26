@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, current_app
+from flask import Blueprint, render_template, request, redirect, current_app, session
 from app.blueprints.courses import courses_bp, forms
 from flask_login import current_user, login_user, logout_user, login_required
 from app.database.models import User, Class, UCourse, Attendance, Course
@@ -13,7 +13,7 @@ def courses():
     form = CourseForm(request.form)
     if request.method == 'POST' and form.validate():
         queries.add_course(form.course.data, int(form.semester.data))
-    return render_template("courses/courses.html.jinja", courses=courses, form=form)
+    return render_template("courses/courses.html", courses=courses, session=session)
 
 @courses_bp.route('/coursesQ', methods=['GET'])
 @login_required

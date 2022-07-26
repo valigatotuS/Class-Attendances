@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/css/reset.css" >
+    <link rel="stylesheet" href="static/css/style.css" >
+    <script type="text/javascript" src="static/js/animations.js" defer></script>
+    {% block head_local %}{% endblock %}
+  </head>
+  <body>
+    {% if get_flashed_messages() %}
+      <div class="alert-user">
+        {{get_flashed_messages()[-1]}}
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>           
+    {% endif %}
+    {% include 'side-bar.html' %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

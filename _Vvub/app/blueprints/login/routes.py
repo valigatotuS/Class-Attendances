@@ -24,8 +24,9 @@ def sign_in():
         elif   (check_password_hash(user.password_hash, form.password.data) and
                 (form.role.data=="student" or form.role.data in queries.get_user_roles(user.id))):  
             login_user(user) 
-            session['role'] = form.role.data
-            flash("Login successfully!")
+            queries.load_user_data() # loading user data
+            session['user_info']['role'] = form.role.data
+            flash(f"Hello, {session['user_info']['fname']}!")
             return redirect("/home")
         else:
             flash("Incorrect password, try again!")
