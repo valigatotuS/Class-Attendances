@@ -1,0 +1,47 @@
+.attend-qr-container{
+    z-index: 4;
+    border: 4px solid gray;
+    background-color: white;
+    box-shadow: 0px 0px 1500px 1000px rgb(100, 100, 100);
+    border-radius: 12px;
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    padding: 45px;
+    display: none;
+}
+#close-btn-qr{
+    position: absolute;
+    right: 22px;
+    top: 15px;
+}
+
+
+
+.hovertext:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    background-color: #d75600;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    transition: opacity 1s ease-in-out;
+
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 105%;
+}
+
+.hovertext:hover:before {
+opacity: 1;
+visibility: visible;
+}
+
+#home-svg{
+    margin-top: 100px;
+}

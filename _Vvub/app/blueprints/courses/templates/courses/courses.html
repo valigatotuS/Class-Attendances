@@ -1,45 +1,6 @@
 {% extends "base.html" %}
 {% block head_local %}
   <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
-  <style>
-    .courses-table{
-      margin-top: 40px;
-      width: 100%;
-      height: 42px;
-      /* border: 1px solid red; */
-    }
-
-    .courses-table tr{
-      border-bottom: 1px solid #c7cdd1;
-    }
-
-    .courses-table thead tr{
-      border-bottom: 1px solid #a5afb5;;
-    }
-
-    .courses-table th{
-      text-align: start;
-      font-size: 1rem;
-      padding: 14px 7px 7px 7px;
-      color: #2D3B45;
-      font-weight: bold;
-    }
-
-    .courses-table td{
-      padding: 14px 7px;
-      font-size: 1rem;
-      font-weight: normal;
-    }
-
-    .courses-table a{
-      color: #003399;
-      text-decoration: none;
-    }
-
-    .courses-table a:hover{
-      text-decoration: underline;
-    }
-  </style>
 {% endblock %}
 {% block content %}
 <div id="container-dashboard">
@@ -55,17 +16,47 @@
             <th>Semester</th>
             <th>Ingeschreven als</th>
             <th>Gepubliceerd</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-        {% for course in session['user_courses'].values() %}
+        {% if session['user_info']['role'] == 'admin' %}
           <tr>
             <td></td>
-            <td><a href="">{{course['name']}}</a></td>
+            <form method="POST" action="" role="form">
+              {{ course_form.hidden_tag() }}
+              <td>{{course_form.name(placeholder="naam")}}</td>
+              <td>2122</td>
+              <td>{{course_form.semester()}}</td>     
+              <td></td>
+              <td></td>
+              <td>{{course_form.submit(class="add-user-btn", method="POST", value="Voeg toe") }}</td>       
+            </form>
+          </tr>
+        {% endif %}
+        {% for course in courses%}
+          <tr>
+            <td></td>
+            <td><a href="course/{{course['id']}}/start">{{course['name']}}</a></td>
             <td>2122</td>
             <td>{{course['semester']}}</td>
-            <td>Cursist</td>
+            <td>
+              {% if course['role']=='student' %}
+                Cursist
+              {% else %}
+                {{course['role']}}
+              {% endif %}
+            </td>
             <td>Ja</td>
+            <td>
+            {% if session['user_info']['role'] == 'admin' %}
+              <form method="POST">
+                {{del_course_form.csrf_token}}
+                {{del_course_form.course_id(value=course['id'])}}
+                {{del_course_form.submit(class="del-user-btn", value="Verwijder")}}
+              </form>
+            {% endif %}
+            </td>
           </tr>
         {% endfor %}  
         </tbody>

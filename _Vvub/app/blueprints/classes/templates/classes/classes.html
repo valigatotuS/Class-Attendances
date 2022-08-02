@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head_local %}
+  <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
+{% endblock %}
+{% block content %}
+<div id="container-dashboard">
+  <div class="container-header">
+    <h1>Alle Lessen</h1>
+    <div class="courses-table-container">
+      <table class="courses-table">
+        <thead>
+          <tr>
+            <th>     </th>
+            <th>Datum</th>
+            <th>Cursus</th>
+            <th>Info</th>
+            <th>Tijdstip</th>
+            <th>Duur</th>
+            <th>Plaats</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for class in classes%}
+            <tr>
+                <td></td>
+                <td>{{class.date}}</td>
+                <td>{{class.course}}</td>
+                <td>{{class.info}}</td>
+                <td>{{class.time}}</td>
+                <td>{{class.duration}}</td>
+                <td>{{class.location}}</td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

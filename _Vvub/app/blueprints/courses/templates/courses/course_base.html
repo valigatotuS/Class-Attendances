@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block head_local %}
+  <link rel="stylesheet" href="{{ url_for('courses.static', filename='css/courses.css')}}"/>
+{% endblock %}
+{% block content %}
+<div id="container-dashboard">
+  <div class="container-header">
+    <div class="course-path">
+      <span><a class="course" href="/course/{{course['id']}}/start">{{course['name']}}</a></span>
+      <svg class="next-icon" x="0px" y="0px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve"><path fill="#777777" d="M7.1,8L0.2,1.1c-0.3-0.3-0.3-0.6,0-0.9s0.7-0.3,1,0l7.6,7.3c0.3,0.3,0.3,0.6,0,0.9l-7.6,7.3 c-0.3,0.3-0.7,0.3-1,0c-0.3-0.3-0.3-0.6,0-0.9L7.1,8z"/></svg>
+      {% block page_title %}{% endblock %}
+    </div>
+  </div>
+  <div class="course-content-container">
+    <div class="courses-sidebar-container">
+      <nav>
+        <a href="/course/{{course['id']}}/start">Startpagina</a>
+        <a href="/course/{{course['id']}}/users">Personen</a>
+        <a href="/course/{{course['id']}}/classes">Lessen</a>
+        <a href="">Studiedeelfiche</a>
+      </nav>
+    </div>
+    {% block course_page %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
+

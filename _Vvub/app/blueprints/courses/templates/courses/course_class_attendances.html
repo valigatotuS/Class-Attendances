@@ -1,0 +1,39 @@
+{% extends "courses/course_base.html" %}
+{% block page_title %}
+<span><a class="page" href="/course/{{course.id}}/classes">Lessen</a></span>
+<svg class="next-icon" x="0px" y="0px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve"><path fill="#777777" d="M7.1,8L0.2,1.1c-0.3-0.3-0.3-0.6,0-0.9s0.7-0.3,1,0l7.6,7.3c0.3,0.3,0.3,0.6,0,0.9l-7.6,7.3 c-0.3,0.3-0.7,0.3-1,0c-0.3-0.3-0.3-0.6,0-0.9L7.1,8z"/></svg>
+<span><a class="page" href=""> Aanwezigheden, Les {{id}}</a></span>
+{% endblock %}
+{% block course_page %}
+<div class="courses-table-container">
+    <table class="courses-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Naam</th>
+                <th>Aanwezig</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for presence in class_presences %} 
+            <tr class="rows-presences">
+                <td></td>
+                <td>{{presence.lname}} {{presence.fname}}</td>
+                <td>Ja</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            {% for absence in class_absences %} 
+            <tr class="rows-presences">
+                <td></td>
+                <td>{{absence.lname}} {{absence.fname}}</td>
+                <td>Nee</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

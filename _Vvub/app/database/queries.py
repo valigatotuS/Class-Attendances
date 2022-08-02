@@ -23,6 +23,14 @@ def get_user_info():
     user_info = db2.session.execute(querie)
     return dict(user_info.fetchone())
 
+def get_all_courses():
+    querie = f"""
+        SELECT c.id, c.name, c.semester 
+        FROM Course as c
+        ORDER BY c.name ASC;"""
+    courses = db2.session.execute(querie)
+    return courses.fetchall()
+
 def get_user_courses():
     id = current_user.get_id()
     ucs = UCourse.query.filter_by(user_id=id).all()
@@ -36,7 +44,8 @@ def get_user_courses_v2():
         FROM User u
         INNER JOIN UCourse uc ON u.id=uc.user_id
         INNER JOIN Course c ON uc.course_id=c.id
-        WHERE u.id={current_user.get_id()};"""
+        WHERE u.id={current_user.get_id()}
+        ORDER BY c.name ASC;"""
     courses = db2.session.execute(querie)
     courses_dict = {course.id : dict(course) for  course in courses.fetchall()}
     return courses_dict
@@ -48,9 +57,46 @@ def get_user_classes():
         INNER JOIN UCourse uc ON u.id=uc.user_id
         INNER JOIN Course c ON uc.course_id=c.id
         INNER JOIN Class cl ON c.id=cl.course_id
-        WHERE u.id={current_user.get_id()};"""
+        WHERE u.id={current_user.get_id()}
+        ORDER BY cl.date ASC, cl.time ASC;"""
     classes = db2.session.execute(querie)
-    return classes
+    return classes.fetchall()
+
+def get_date_classes(date):
+    querie = f"""
+        SELECT date, name as course, info, time, duration, location, cl.id, c.id as course_id
+        FROM User u
+        INNER JOIN UCourse uc ON u.id=uc.user_id
+        INNER JOIN Course c ON uc.course_id=c.id
+        INNER JOIN Class cl ON c.id=cl.course_id
+        WHERE u.id={current_user.get_id()} AND cl.date='{date}'
+        ORDER BY cl.time ASC;"""
+    classes = db2.session.execute(querie)
+    return classes.fetchall()
+
+def get_class_attendances(class_id):
+    querie = f"""
+        SELECT u.fname, u.lname 
+        FROM Attendance att
+        INNER JOIN User u ON u.id=att.user_id
+        INNER JOIN Class cl ON cl.id=att.class_id
+        WHERE cl.id={class_id}
+        ORDER BY u.lname ASC;"""
+    attendances = db2.session.execute(querie)
+    return attendances.fetchall()
+
+def get_class_absences(class_id):
+    querie = f"""
+        SELECT u.fname, u.lname 
+        FROM Class cl
+        INNER JOIN Course c ON c.id=cl.course_id
+        INNER JOIN UCourse uc ON c.id=uc.course_id
+        INNER JOIN User u ON u.id=uc.user_id
+        LEFT JOIN Attendance att on att.user_id=u.id
+        WHERE cl.id={class_id} AND att.user_id IS NULL AND uc.role!='docent' AND uc.role!='admin'
+        ORDER BY u.lname ASC;"""
+    absences = db2.session.execute(querie)
+    return absences.fetchall()
 
 def get_course_classes(id):
     querie = f"""
@@ -61,7 +107,7 @@ def get_course_classes(id):
         INNER JOIN Class cl ON c.id=cl.course_id
         WHERE c.id={id} AND u.id={current_user.get_id()};"""
     classes = db2.session.execute(querie)
-    return classes
+    return classes.fetchall()
 
 def get_user_roles(user_id:int):
     querie = f"""
@@ -71,13 +117,41 @@ def get_user_roles(user_id:int):
         WHERE u.id={user_id}"""
     uc = db2.session.execute(querie)
     roles = [userc.role for userc in uc]
-    return roles 
+    return roles
+
+def get_course_users(course_id:int):
+    querie = f"""
+        SELECT u.id, u.fname, u.lname, u.email, uc.role
+        FROM UCourse uc
+        INNER JOIN User u ON uc.user_id=u.id
+        WHERE uc.course_id={course_id}
+        ORDER BY u.lname ASC, u.fname ASC;"""
+    users = db2.session.execute(querie)
+    return users.fetchall()
+
+def get_course_info(course_id):
+    querie = f"""
+        SELECT id, name, semester
+        FROM Course c
+        WHERE c.id={course_id};"""
+    course = db2.session.execute(querie)
+    return course.fetchone()
 
 #----post queries----#
 
 def add_course(name, semester):
     c = Course(name=name, semester=semester)
     db2.session.add(c)
+    db2.session.commit()
+
+def add_course_class(course_id, date, time, duration, location, info):
+    cl = Class(course_id=course_id, date=date, time=time, duration=duration, location=location, info=info)
+    db2.session.add(cl)
+    db2.session.commit()
+
+def add_user_course(course_id, user_id, role):
+    uc = UCourse(course_id=course_id, user_id=user_id, role=role)
+    db2.session.add(uc)
     db2.session.commit()
 
 def add_attendance(class_id):
@@ -105,6 +179,19 @@ def delete_course(course_id):
     db2.session.delete(course)
     db2.session.commit()
 
+def delete_course_class(class_id):
+    cclass = Class.query.get(class_id)
+    db2.session.delete(cclass)
+    db2.session.commit()
+
+def delete_user_course(course_id, user_id):
+    querie = f"""
+        DELETE
+        FROM UCourse as uc
+        WHERE uc.course_id={course_id} AND uc.user_id={user_id}"""
+    db2.session.execute(querie)
+    db2.session.commit()
+
 #----sub functions----#
 
 def fill_table(path:str, Model, db):
@@ -123,3 +210,7 @@ import json
 def load_user_data():
     session['user_info'] = get_user_info()
     session['user_courses'] = get_user_courses_v2()
+
+#------ error handler decorator -------#
+
+

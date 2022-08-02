@@ -9,6 +9,8 @@ from app.database.models import db as db2
 from flask_login import current_user, login_user, logout_user, login_required
 from flask import current_app as app
 
+#------- routes --------------------------------#
+
 @login_bp.route('/sign-in', methods=['GET','POST'])
 @login_bp.route('/', methods=['GET','POST'])
 def sign_in():
@@ -52,46 +54,9 @@ def logout():
     flash("Logged out")
     return redirect("/sign-in")
 
-#------test routes-----#
+#-----------------------------------------------#
 
-@login_bp.route('/sql/u', methods=['GET'])
-def sql_u():
-    #us = User.query.filter_by(fname='jose').first() #db2.session.query(User).filter_by(firstname='kkk').first()
-    us = User.query.filter_by(email="vq@gmail.com").first()
-    
-    return (" ".join([us.fname, us.lname, us.email]))
-
-@login_bp.route('/sql/uc', methods=['GET'])
-def sql_uc():
-    uc = UCourse.query.filter_by(course_id=1).first() #db2.session.query(User).filter_by(firstname='kkk').first()
-    return (" ".join([str(uc.course_id), str(uc.user_id), uc.role]))
-
-@login_bp.route('/sql/test', methods=['GET'])
-def sql_test():
-    
-    # meta = MetaData()
-    # meta.create_all(db2.engine)
-    # queries.delete_records(db2, User)
-    # queries.fill_table(app.config["DB_RECORDS"]+User.__tablename__+".csv" , User, db2)
-
-
-    # u = UCourse.query.filter_by(course_id=1).first()
-    # db2.session.delete(u)
-    # db2.session.commit()
-    
-    return str("kkk") # app.config["DB_RECORDS"]
-
-@login_bp.route('/sql/courses', methods=['GET'])
-def sql_classes():
-    id = current_user.get_id()
-    ucs = UCourse.query.filter_by(user_id=id).all()
-    courses_id = [uc.course_id for uc in ucs]
-    courses = Course.query.filter(Course.id.in_(courses_id)).all()
-    names = [course.name for course in courses]
-    return str(names)
-
-
-#------login handlers------#
+#------login handlers---------------------------#
 
 from app import login
 
@@ -104,3 +69,5 @@ def unauthorized():
     """Redirect unauthorized users to Login page."""
     flash('Unauthorized acces, sign in first!')
     return redirect("/sign-in")
+
+#-----------------------------------------------#

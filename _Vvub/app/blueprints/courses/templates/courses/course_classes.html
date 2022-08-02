@@ -1,0 +1,57 @@
+{% extends "courses/course_base.html" %}
+{% block page_title %}
+<span><a class="page" href="">Lessen</a></span>
+{% endblock %}
+{% block course_page %}
+<div class="courses-table-container">
+    <table class="courses-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Informatie</th>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Duur</th>
+                <th>Plaats</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if session['user_info']['role'] in ['admin','docent'] %}
+            <tr>
+                <form method="POST">
+                    {{add_cc_form.csrf_token}}
+                    <td></td>
+                    <td>{{add_cc_form.info(placeholder='info')}}</td>
+                    <td>{{add_cc_form.date(placeholder='datum')}}</td>
+                    <td>{{add_cc_form.time(placeholder='tijd')}}</td>
+                    <td>{{add_cc_form.duration(placeholder='duur')}}</td>
+                    <td>{{add_cc_form.location(placeholder='plaats')}}</td>
+                    <td>{{add_cc_form.submit_cc(class='add-user-btn', value="Voeg toe")}}</td>
+                </form>
+            </tr>
+            {% endif %}
+            {% for class in classes %}
+            <tr>
+                <td>
+                </td>
+                <td><a href="/course/{{course.id}}/class/{{class.id}}/attendances">{{class['info']}}</a></td>
+                <td>{{class['date']}}</td>
+                <td>{{class['time']}}</td>
+                <td>{{class['duration']}}'</td>
+                <td>{{class['location']}}</td>
+                <td>
+                    {% if session['user_info']['role'] in ['admin','docent'] %}
+                    <form method="POST">
+                        {{del_cc_form.csrf_token}}
+                        {{del_cc_form.class_id(value=class['id'])}}
+                        {{del_cc_form.submit_del_cc(class="del-user-btn", value="Verwijder")}}
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -58,3 +58,6 @@ button{
 select, input{
 	background-color: inherit;
 }
+a {
+	text-decoration: none;
+}

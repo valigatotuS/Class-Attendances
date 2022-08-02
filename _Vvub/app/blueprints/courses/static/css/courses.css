@@ -1,40 +1,116 @@
-.courses-list {
-    margin-left: 100px;
+/* page-title */
+.next-icon{
+  width: 5px;
+  height: 9px;
+  display: inline;
+  margin: 0px 9px;
+}
+.course-path{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.course-path span{
+  font-size: 18px;
+}
+.course-path .course{
+  color: #003399;
+}
+.course-path .page{
+  color: #2D3B45;
+}
+.course-path a:hover{
+  text-decoration: underline;
+}
+/* --- */
+
+/* side-bar */
+.courses-sidebar-container{
+  padding: 48px 12px 72px 0px;
+  /* position: sticky; */
+  /* top: 120px; */
+  width: 168px;
+  box-sizing: border-box;
+}
+.courses-sidebar-container nav {
+  display: flex;
+  flex-direction: column;
 }
 
-.table {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 0.9em;
-    font-family: "Roboto", sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.courses-sidebar-container a {
+  color: #003399;
+  font-size: 16px;
+  padding: 8px 0px 8px 6px;
+}
+/* --- */
+
+/* Courses-table */
+.courses-table-container{
+  flex-grow: 1;
 }
 
-.table thead tr {
-    background-color: var(--theme-color2);
-    color: var(--theme-color1);
-    text-align: left;
+.courses-table{
+    margin-top: 40px;
+    width: 100%;
+    height: 42px;
+    /* border: 1px solid red; */
+  }
+
+.courses-table tr{
+  border-bottom: 1px solid #c7cdd1;
 }
 
-.table th,
-.table td {
-    padding: 12px 15px;
+.courses-table thead tr{
+  border-bottom: 1px solid #a5afb5;;
 }
 
-.table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+.courses-table th{
+  text-align: start;
+  font-size: 1rem;
+  padding: 14px 7px 7px 7px;
+  color: #2D3B45;
+  font-weight: bold;
 }
 
-td, th {
-    font-size: x-large;
-}
+.courses-table td{
+  padding: 14px 7px;
+  font-size: 1rem;
+  font-weight: normal;
+} 
 
-input {
-    border-color: rgb(255, 255, 255);
-    background-color: antiquewhite;
+.courses-table a{
+  color: #003399;
+  text-decoration: none;
 }
-
-.form-row {
-    border-bottom: 1pt dashed black;
+.courses-table a:hover{
+  text-decoration: underline;
 }
+.course-content-container{
+  display: flex;
+}
+.courses-table tr:nth-child(even) {
+  background-color: rgb(241, 240, 240);
+}
+.add-user-btn, .del-user-btn{
+  width: 70px;
+  border-radius: 5px;
+  padding: 5px;
+  transition: 0.2s;
+  border: 1px solid rgb(90, 146, 222);
+  color: rgb(90, 146, 222);
+  font-size: 12px;
+}
+.del-user-btn{
+  border: 1px solid rgb(230, 53, 53);
+  color: rgb(230, 53, 53);
+}
+.add-user-btn:hover{
+  background-color: rgb(90, 146, 222);
+  color: white;
+}
+.del-user-btn:hover{
+  background-color: rgb(230, 53, 53);
+  color: white;
+}
+         
+/* --- */

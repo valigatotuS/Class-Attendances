@@ -1,0 +1,51 @@
+{% extends "courses/course_base.html" %}
+{% block page_title %}
+<span><a class="page" href="">Personen</a></span>
+{% endblock %}
+{% block course_page %}
+<div class="courses-table-container">
+  <table class="courses-table">
+    <thead>
+      <tr>
+        <th>     </th>
+        <th>Naam</th>
+        <th>Email</th>
+        <th>Functie</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if session['user_info']['role'] in ['admin','docent'] %}
+      <tr>
+        <td></td>
+        <form method="POST" action="" role="form">
+          {{ add_uc_form.hidden_tag() }}
+          <td>{{add_uc_form.user_id(placeholder="user_id")}}</td>
+          <td></td>
+          <td>{{add_uc_form.role()}}</td>     
+          <td>{{add_uc_form.submit(class="add-user-btn", method="POST", value="Voeg toe") }}</td>       
+        </form>
+      </tr>
+    {% endif %}
+    {% for user in users %}
+      <tr>
+        <td></td>
+        <td><a href="">{{user['lname']}} {{user['fname']}}</a></td>
+        <td>{{user['email']}}</td>
+        <td>{{user['role']}}</td>
+        <td>
+          {% if session['user_info']['role'] in ['admin','docent'] %}
+          <form method="POST">
+            {{del_uc_form.csrf_token}}
+            {{del_uc_form.course_id(value=course['id'])}}
+            {{del_uc_form.user_id(value=user['id'])}}
+            {{del_uc_form.submit(class="del-user-btn", value="Verwijder")}}
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}  
+    </tbody>
+  </table>
+</div>
+{% endblock %}
