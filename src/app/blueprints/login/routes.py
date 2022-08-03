@@ -46,7 +46,7 @@ def sign_up():
         return redirect("/sign-in")
     return render_template('login/signup.html', form=form)
 
-@login_bp.route('/logout')
+@login_bp.route('/logout', methods=['GET'])
 @login_required
 def logout():
     logout_user()
