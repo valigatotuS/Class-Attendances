@@ -95,8 +95,8 @@ For the front-end of the website I designed multiples templates but I was never 
 I decided to recreate our University web-site with the requirements add-ons in order to get a good grasp of how 
 html & css works.
 <br>
-<img src="src/app/static/img/vub-dash-01.png" alt="VUB-dashboard first attempt" style="width:1002px;"/><br>
-<img src="src/app/static/img/vub-dash-mine.png" alt="VUB-dashboard second attempt" style="width:1002px;"/><br>
+<img src="src/app/static/img/vub-dash-01.png" alt="VUB-dashboard first attempt" style="height:300px;"/><br>
+<img src="src/app/static/img/vub-dash-mine.png" alt="VUB-dashboard second attempt" style="height:300px;"/><br>
 <img src="src/app/static/img/vub-dash.png" alt="VUB-dashboard" style="height:300px;"/>
 <img src="src/app/static/img/vub-dash-copy.png" alt="VUB-dashboard-copy" style="height:300px;"/>
 <br>
