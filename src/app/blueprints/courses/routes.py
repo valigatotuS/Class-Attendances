@@ -50,7 +50,7 @@ def courses():
             flash('Cursus is verwijderd')
         courses = queries.get_all_courses()
     else: 
-        courses = session['user_courses'].values() #queries.get_user_courses() #queries.get_user_courses_v2()
+        courses = session['user_courses'].values() 
     return render_template("courses/courses.html", courses=courses, course_form=add_course_form,del_course_form=del_course_form)
 
 @courses_bp.route('/course/<course_id>/start', methods=['POST','GET'])
@@ -100,6 +100,6 @@ def course_class_attendances_(course_id, class_id):
     course = queries.get_course_info(course_id)
     class_presences = queries.get_class_attendances(class_id)
     class_absences = queries.get_class_absences(class_id)
-    return render_template("courses/course_class_attendances.html", course=course, class_presences=class_presences, class_absences=class_absences)
+    return render_template("courses/course_class_attendances.html", course=course, class_presences=class_presences, class_absences=class_absences, class_id=class_id)
 
 #-----------------------------------------------#

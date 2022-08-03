@@ -24,7 +24,7 @@ def get_user_info():
     return dict(user_info.fetchone())
 
 def get_all_courses():
-    querie = f"""
+    querie = """
         SELECT c.id, c.name, c.semester 
         FROM Course as c
         ORDER BY c.name ASC;"""
@@ -101,11 +101,9 @@ def get_class_absences(class_id):
 def get_course_classes(id):
     querie = f"""
         SELECT date, name as course, info, time, duration, location, cl.id
-        FROM User u
-        INNER JOIN UCourse uc ON u.id=uc.user_id
-        INNER JOIN Course c ON uc.course_id=c.id
+        FROM Course c
         INNER JOIN Class cl ON c.id=cl.course_id
-        WHERE c.id={id} AND u.id={current_user.get_id()};"""
+        WHERE c.id={id};"""
     classes = db2.session.execute(querie)
     return classes.fetchall()
 
@@ -206,11 +204,18 @@ def csv2dict(path:str):
     (keys, records) = (lines[0], lines[1:-1])
     return [dict(zip(keys, record)) for record in records]
 
-import json 
 def load_user_data():
     session['user_info'] = get_user_info()
     session['user_courses'] = get_user_courses_v2()
 
-#------ error handler decorator -------#
+#----------------------#
 
+#-------sql injection--#
+
+def sql_inj_1():
+    querie = "SELECT * FROM User WHERE fname = 'john' OR 'a'='a';-- AND password = '';"
+    user = db2.session.execute(querie)
+    return user.fetchall()
+    
+#----------------------#
 
