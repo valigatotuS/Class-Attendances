@@ -22,7 +22,7 @@ Created: 09/12/2021
         <li><a href="#rest-api">REST API</a></li>
       </ul>
     </li>
-    <a href="#deploy-project">Deploy project</a>
+    <li><a href="#deploy-project">Deploy project</a></li>
     <li>
         <a href="#credits">Credits</a>
         <ul>
@@ -125,5 +125,7 @@ Have fun on my website!
 ## Credits
 This project is part of the course "Database Management" at the VUB for 3BA Industrial Sciences ELO-ICT students given by the instructors Ann Braeken & Tom Godden.
 ### Sources
-![Miguel Grinberg's Flask tuto](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
-![Hackersandlackers Flask tuto](https://hackersandslackers.com/series/build-flask-apps/)
+
+- ![Miguel Grinberg's Flask tuto](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+- ![Hackersandlackers Flask tuto](https://hackersandslackers.com/series/build-flask-apps/)
+
