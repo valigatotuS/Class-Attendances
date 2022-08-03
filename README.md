@@ -56,15 +56,15 @@ The users involved are: students, teachers & administrators.
 these courses
 
 ### Roadmap
-Building this project went through several stages...
+This project went through several stages...
 
-- [x] Understand app requirements
+- [x] Understanding the app requirements
 - [x] Database design 
 - [x] Front-end design
 - [x] REST-API design
 - [x] Website testing
-- [x] Write API-documentation
-- [ ] Review project
+- [x] API-documentation
+- [ ] Project review
 
 ### Folder Structure
     src
