@@ -90,12 +90,12 @@ def get_class_absences(class_id):
         SELECT u.fname, u.lname 
         FROM Class cl
         INNER JOIN Course c ON c.id=cl.course_id
-        INNER JOIN UCourse uc ON c.id=uc.course_id
+        INNER JOIN UCourse uc ON c.id=uc.course_id 
         INNER JOIN User u ON u.id=uc.user_id
         LEFT JOIN Attendance att on att.user_id=u.id
-        WHERE cl.id={class_id} AND att.user_id IS NULL AND uc.role!='docent' AND uc.role!='admin'
+        WHERE cl.id={class_id} AND att.user_id IS NULL
         ORDER BY u.lname ASC;"""
-    absences = db2.session.execute(querie)
+    absences = db2.session.execute(querie) # AND uc.role!='docent' AND uc.role!='admin'
     return absences.fetchall()
 
 def get_course_classes(id):
@@ -174,6 +174,20 @@ def delete_records(db, Model):
 
 def delete_course(course_id):
     course = Course.query.get(course_id)
+    Class.query.filter_by(course_id=course_id).delete()
+    UCourse.query.filter_by(course_id=course_id).delete()
+
+    # querie = f"""
+    #         DELETE 
+    #         FROM Attendance as att
+    #         WHERE EXISTS
+    #             (SELECT u.fname, u.lname 
+    #             FROM Attendance att
+    #             INNER JOIN User u ON u.id=att.user_id
+    #             INNER JOIN Class cl ON cl.id=att.class_id
+    #             WHERE cl.course_id={course_id});"""
+    # db2.session.execute(querie)
+    
     db2.session.delete(course)
     db2.session.commit()
 
@@ -186,7 +200,7 @@ def delete_user_course(course_id, user_id):
     querie = f"""
         DELETE
         FROM UCourse as uc
-        WHERE uc.course_id={course_id} AND uc.user_id={user_id}"""
+        WHERE uc.course_id={course_id} AND uc.user_id={user_id};"""
     db2.session.execute(querie)
     db2.session.commit()
 

@@ -103,3 +103,9 @@ def course_class_attendances_(course_id, class_id):
     return render_template("courses/course_class_attendances.html", course=course, class_presences=class_presences, class_absences=class_absences, class_id=class_id)
 
 #-----------------------------------------------#
+
+@courses_bp.route('/course/<course_id>/del', methods=['POST','GET'])
+def del_classes_(course_id):
+    queries.test(course_id)
+
+    return "delete"

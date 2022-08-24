@@ -22,11 +22,18 @@
                 <form method="POST">
                     {{add_cc_form.csrf_token}}
                     <td></td>
-                    <td>{{add_cc_form.info(placeholder='info')}}</td>
-                    <td>{{add_cc_form.date(placeholder='datum')}}</td>
-                    <td>{{add_cc_form.time(placeholder='tijd')}}</td>
-                    <td>{{add_cc_form.duration(placeholder='duur')}}</td>
-                    <td>{{add_cc_form.location(placeholder='plaats')}}</td>
+                    <style>
+                        .input-error{
+                            color: rgb(255, 100, 100);
+                            font-size: 12px;
+                            text-decoration: dotted;
+                        }
+                    </style>
+                    <td>{{add_cc_form.info(placeholder='info')}}        {% if add_cc_form.info.errors and add_cc_form.info.errors[0]!='This field is required.' %}<br><span class="input-error">{{ add_cc_form.info.errors[-1] }}</span>{% endif  %}</td>
+                    <td>{{add_cc_form.date(placeholder='datum')}}       {% if add_cc_form.date.errors and add_cc_form.date.errors[0]!='This field is required.'%}<br><span class="input-error">{{ add_cc_form.date.errors[-1] }}</span>{% endif  %}</td>
+                    <td>{{add_cc_form.time(placeholder='tijd')}}        {% if add_cc_form.time.errors and add_cc_form.time.errors[0]!='This field is required.'%}<br><span class="input-error">{{ add_cc_form.time.errors[-1] }}</span>{% endif  %}</td>
+                    <td>{{add_cc_form.duration(placeholder='duur')}}    {% if add_cc_form.duration.errors and add_cc_form.duration.errors[0]!='This field is required.' %}<br><span class="input-error">{{ add_cc_form.duration.errors[-1] }}</span>{% endif  %}</td>
+                    <td>{{add_cc_form.location(placeholder='plaats')}}  {% if add_cc_form.location.errors and add_cc_form.location.errors[0]!='This field is required.'%}<br><span class="input-error">{{ add_cc_form.location.errors[-1] }}</span>{% endif  %}</td>
                     <td>{{add_cc_form.submit_cc(class='add-user-btn', value="Voeg toe")}}</td>
                 </form>
             </tr>

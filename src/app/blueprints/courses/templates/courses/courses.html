@@ -51,6 +51,7 @@
             <td>
             {% if session['user_info']['role'] == 'admin' %}
               <form method="POST">
+                <input type="hidden" name="_method" value="delete">
                 {{del_course_form.csrf_token}}
                 {{del_course_form.course_id(value=course['id'])}}
                 {{del_course_form.submit(class="del-user-btn", value="Verwijder")}}
