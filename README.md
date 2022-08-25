@@ -39,7 +39,7 @@ The purpose of this project is to learn developping simple
 database driven web-sites.
 
 ### Built with
-* python [flask, sqlalchemy, jinja]
+* python [flask, sqlalchemy, jinja] [![python](https://img.shields.io/badge/python-3.8.10-lightgrey)]()
 * SQL
 * html
 * css
@@ -107,7 +107,10 @@ The last one is my recreation of it.<br>
 ### REST API
 <i>REST APIs communicate via HTTP requests to perform standard database functions like creating, reading, updating, and deleting records (also known as CRUD) within a resource. For example, a REST API would use a GET request to retrieve a record, a POST request to create one, a PUT request to update a record, and a DELETE request to delete one.</i>
 
-<a href='API-docu.md'>API-documentation</a>
+<a href='API-docu.md'>API-documentation</a><br><br>
+
+- all inputs are checked and verified against improper format and sql-injections (regex-verif)
+- all routes require authentification through a session cookie
 
 ## Deploy project
 

@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
     """Sign-in form"""
     email = StringField("email", [DataRequired(message="fill your email out")])
     password = PasswordField("password", [DataRequired(message="fill your password out")])
-    role = SelectField(u'Role', choices=["student", "teacher", "admin"])
+    role = SelectField(u'Role', choices=["student", "docent", "admin"])
     submit = SubmitField("Log in")
 
 class RegisterForm(FlaskForm):

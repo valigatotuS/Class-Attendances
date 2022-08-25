@@ -88,7 +88,7 @@ def course_classes_(course_id):
     if del_cc_form.validate_on_submit() and del_cc_form.submit_del_cc.data:
         queries.delete_course_class(del_cc_form.class_id.data)
         flash('Les is verwijderd')
-
+    
     course = queries.get_course_info(course_id)
     classes = queries.get_course_classes(course_id)
     return render_template("courses/course_classes.html", course=course, classes=classes, add_cc_form=add_cc_form, del_cc_form=del_cc_form)
